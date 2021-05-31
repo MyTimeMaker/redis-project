@@ -10,11 +10,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
-@CacheConfig(cacheNames = "UserService")
+@CacheConfig(cacheNames = "users")
 public class UserService {
     @Autowired
     private UserMapper userMapper;
-    @Cacheable
+    @Cacheable(key = "#p0")
     public User findUserByUsername(String username){
         return userMapper.findUserByUsername(username);
     }
